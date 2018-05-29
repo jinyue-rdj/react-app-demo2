@@ -1,5 +1,6 @@
 import React from "react";
-import "./PostItem.css"
+import "./PostItem.css";
+import like from "./images/like-default.png";
 
 export default function PostItem(props){
     const handleClick = () =>{
@@ -9,12 +10,12 @@ export default function PostItem(props){
     const post = props.post;
 
     return (
-        <li>
-            <div>{post.title}</div>
+        <li className='item'>
+            <div className='title'>{post.title}</div>
             <div>创建人：<span>{post.author}</span></div>
             <div>创建时间<span>{post.date}</span></div>
-            <div>
-                <button onClick={handleClick}>点赞</button>
+            <div className='like'>
+                <span><img src={like} onClick={handleClick} /></span>
                 <span>{post.vote}</span>
             </div>
         </li>
