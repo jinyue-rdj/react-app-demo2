@@ -9,6 +9,7 @@ export default class PostList extends Component{
         };
         this.timer = null;
         this.handleVote = this.handleVote.bind(this);
+        this.handleSave = this.handleSave.bind(this);
     }
 
     componentDidMount() {
@@ -37,14 +38,27 @@ export default class PostList extends Component{
         this.setState({posts:posts});
     }
 
+    handleSave(post){
+        const posts=this.state.posts.map(item=>{
+            const newItem=item.id === post.id ?post:item;
+            return newItem;
+        })
+        this.setState({posts});
+    }
+
 
     render(){
         return(
             <div>
                 帖子列表
                 <ul>
-                    {this.state.posts.map(item=>
-                    <PostItem post={item} onVote={this.handleVote.bind(this)}/>)}
+                {this.state.posts.map(item=>
+                    <PostItem
+                    key={item.id} 
+                    post={item} 
+                    onVote={this.handVote}
+                    onSave={this.handleSave} />
+                )}
                 </ul>
             </div>
         );
